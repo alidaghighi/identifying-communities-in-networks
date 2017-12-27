@@ -19,29 +19,58 @@ while True:
             break
         elif 'help' in _input[0]:
             print(30 * ' ' + 20 * '*')
-            print('RUN command: \n')
+            print('RUN command:')
             print('>>> RUN LinkedList Quick ')
-            print('>>> RUN LinkedList Quick ')
-            print('>>> RUN LinkedList Quick ')
-            print('>>> RUN LinkedList Quick ')
-            print('>>> RUN LinkedList Quick ')
-            print('>>> RUN LinkedList Quick ')
-            print('>>> RUN LinkedList Quick ')
-            print('>>> RUN LinkedList Quick ')
+            print('>>> RUN LinkedList Insertion ')
+            print('>>> RUN LinkedList Merge ')
+            print('>>> RUN LinkedList Bubble ')
+            print('>>> RUN LinkedList Optimum Insertion N ')
+            print('>>> RUN LinkedList Optimum Bubble N ')
+            print('>>> RUN Matrix Quick ')
+            print('>>> RUN Matrix Insertion  ')
+            print('>>> RUN Matrix Merge ')
+            print('>>> RUN Matrix Bubble ')
+            print('>>> RUN Matrix Optimum Insertion N ')
+            print('>>> RUN Matrix Optimum Bubble N ')
 
-        elif _input[0] == 'add':
-            print("")
-            if _input[1] in 'service':
-                print("")
-            elif _input[1] in 'subservice':
-                print("")
-            elif _input[1] in 'agency':
-                print("")
-            elif _input[1] in 'offer':
-                print("")
+        elif _input[1] == 'LinkedList':
+            print("DO1")
+            if _input[2] in 'Quick':
+                print("DO2")
+            elif _input[2] in 'Insertion':
+                print("DO3")
+            elif _input[2] in 'Merge':
+                print("DO4")
+            elif _input[2] in 'Bubble':
+                print("DO5")
+            elif _input[2] in 'Optimum':
+                if _input[3] in 'Insertion':
+                    print("DO6")
+                elif _input[3] in 'Bubble':
+                    print("DO7")
+                else:
+                    print('Wrong!\ncheck "help" for more information!')
+
+        elif _input[1] == 'Matrix':
+            print("DO12")
+            if _input[2] in 'Quick':
+                print("DO22")
+            elif _input[2] in 'Insertion':
+                print("DO32")
+            elif _input[2] in 'Merge':
+                print("DO42")
+            elif _input[2] in 'Bubble':
+                print("DO52")
+            elif _input[2] in 'Optimum':
+                if _input[3] in 'Insertion':
+                    print("DO62")
+                elif _input[3] in 'Bubble':
+                    print("DO72")
+                else:
+                    print('Wrong!\ncheck "help" for more information!')
+
             else:
                 print('Wrong!\ncheck "help" for more information!')
-
         else:
             print('Wrong!\ncheck "help" for more information!')
         print(30 * ' ' + 20 * '*')
