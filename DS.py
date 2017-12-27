@@ -1,4 +1,4 @@
-
+import numpy as np
 """
 We have Node class:
     Data
@@ -55,4 +55,3 @@ class LinkedList:
 Adjacency Matrix:
 
 """
-
