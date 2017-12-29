@@ -8,6 +8,8 @@ print(30 * ' ' + 20 * '*')
 print('Type "help" for allowed commands.')
 print(30 * ' ' + 20 * '*')
 
+matrix = {}
+
 while True:
     _input = input('Enter a command: ').split()
     try:
@@ -16,21 +18,27 @@ while True:
         elif 'exit' in _input[0]:
             break
         elif 'help' in _input[0]:
-            print(30 * ' ' + 20 * '*')
-            print('run command:')
+            print(30 * ' ' + 40 * '*')
+            print('run commands:')
             print('    >>> run LinkedList Quick ')
             print('    >>> run LinkedList Insertion ')
             print('    >>> run LinkedList Merge ')
             print('    >>> run LinkedList Bubble ')
-            print('    >>> run LinkedList Optimum Insertion N ')
-            print('    >>> run LinkedList Optimum Bubble N ')
+            print('    >>> run LinkedList Optimum Insertion <your input number> ')
+            print('    >>> run LinkedList Optimum Bubble <your input number> ')
             print('    >>> run Matrix Quick ')
             print('    >>> run Matrix Insertion  ')
             print('    >>> run Matrix Merge ')
             print('    >>> run Matrix Bubble ')
-            print('    >>> run Matrix Optimum Insertion N ')
-            print('    >>> run Matrix Optimum Bubble N ')
+            print('    >>> run Matrix Optimum Insertion <your input number> ')
+            print('    >>> run Matrix Optimum Bubble <your input number> ')
+            print(30 * ' ' + 40 * '*')
+            print('input command:')
+            print('    >>> input <name of your test case file>')
 
+        elif _input[0] in 'input':
+            data = open(_input[1], 'r')
+            #process(data)
         elif _input[1] == 'LinkedList':
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO2")
