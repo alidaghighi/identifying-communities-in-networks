@@ -8,7 +8,7 @@ print(30 * ' ' + 20 * '*')
 print('Type "help" for allowed commands.')
 print(30 * ' ' + 20 * '*')
 
-matrix = {}
+graph = {}
 
 while True:
     _input = input('Enter a command: ').split()
@@ -38,7 +38,20 @@ while True:
 
         elif _input[0] in 'input':
             data = open(_input[1], 'r')
-            #process(data)
+            # process(data)
+            lineList = data.readlines()
+            for i in range(len(lineList)):
+                lineList[i] = lineList[i].split(',')
+            for i in range(len(lineList)):
+                last = lineList[i]
+                s = ''
+                s1 = last[1]
+                for j in range(0, len(last[1]) - 1):
+                    s += s1[j]
+                last[1] = s
+                lineList[i] = last
+
+            print("Data set!")
         elif _input[1] == 'LinkedList':
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO2")
