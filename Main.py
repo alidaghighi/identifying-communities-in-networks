@@ -38,7 +38,6 @@ while True:
 
         elif _input[0] in 'input':
             data = open(_input[1], 'r')
-            # process(data)
             lineList = data.readlines()
             for i in range(len(lineList)):
                 lineList[i] = lineList[i].split(',')
