@@ -40,7 +40,7 @@ while True:
             data = open(_input[1], 'r')
             lineList = data.readlines()
             for i in range(len(lineList)):
-                lineList[i] = lineList[i].split(',')
+                lineList[i] = lineList[i].split('\t')
             for i in range(len(lineList)):
                 last = lineList[i]
                 s = ''
