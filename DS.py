@@ -60,4 +60,3 @@ Adjacency Matrix:
 class Matrix:
     def __init__(self, number):
         self.matrix = [[0 for i in range(number)] for i in range(number)]
-
