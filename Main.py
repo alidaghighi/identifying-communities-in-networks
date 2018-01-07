@@ -49,7 +49,6 @@ while True:
                     s += s1[j]
                 last[1] = s
                 lineList[i] = last
-            D = {}
             s = []
             for i in range(0, int(lineList[-1][0])):
                 if lineList[i + 1][0] == lineList[i][0]:
@@ -59,7 +58,7 @@ while True:
                 if lineList[i + 1][0] != lineList[i][0]:
                     if lineList[i][j] not in s:
                         s.append(lineList[i][j])
-                    D[lineList[i][0]] = s
+                    graph[lineList[i][0]] = s
                     s = []
 
             print("Data set!", '\n', "Graph created!")
@@ -81,6 +80,7 @@ while True:
                     print('Wrong!\ncheck "help" for more information!')
 
         elif _input[1] == 'Matrix':
+            matrix = [[0 for i in range(int(lineList[-1][0]))] for i in range(int(lineList[-1][0]))]
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO22")
             elif _input[2] in 'Insertion' and len(_input) == 3:
