@@ -1,4 +1,3 @@
-import numpy as np
 """
 We have Node class:
     Data
@@ -12,6 +11,7 @@ class Node:
         self.next = None
         self.data = data
         self.prev = None
+
 
 """
 Linked List:
