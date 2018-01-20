@@ -47,15 +47,17 @@ class LinkedList:
             while p.next is not None:
                 if p.data is k:
                     return p
+                elif p.data is not k and p.child is not None:
+                    return p.child.search(k)
                 p = p.next
             if p.data is k:
                 return p
         return None
 
-    def pop(self):
-        p = self.head
+    def remove(self, p):
         tmp = p.prev
-        self.head = tmp
+        p.prev.next = p.next
+        p.prev = tmp
 
     def clear(self):
         p = self.head
@@ -64,8 +66,8 @@ class LinkedList:
         p.prev = None
         p.child = None
 
-    def __str__(self):
-        s = ""
+    def str(self):
+        s = ''
         p = self.head
         if p is not None:
             while p.next is not None:

@@ -1,18 +1,18 @@
-def insertion_sort(arr):
+def insertion_sort(edges):
  
     # Traverse through 1 to len(arr)
-    for i in range(1, len(arr)):
+    for i in range(1, len(edges)):
  
-        key = arr[i]
+        key = edges[i][2]
  
         # Move elements of arr[0..i-1], that are
         # greater than key, to one position ahead
         # of their current position
         j = i-1
-        while j >= 0 and key < arr[j]:
-                arr[j + 1] = arr[j]
-                j -= 1
-        arr[j + 1] = key
+        while j >= 0 and key < edges[j][2]:
+            edges[j + 1] = edges[j]
+            j -= 1
+        edges[j + 1][2] = key
 
 
 # Python program for implementation of Quicksort Sort
@@ -24,13 +24,13 @@ def insertion_sort(arr):
 # of pivot
 def partition(arr, low, high):
     i = (low - 1)         # index of smaller element
-    pivot = arr[high]     # pivot
+    pivot = arr[high][2]     # pivot
  
     for j in range(low, high):
  
         # If current element is smaller than or
         # equal to pivot
-        if arr[j] <= pivot:
+        if arr[j][2] <= pivot:
          
             # increment index of smaller element
             i = i + 1
@@ -46,23 +46,24 @@ def partition(arr, low, high):
 # high  --> Ending index
 
 # Function to do Quick sort
-def quick_sort(arr,low,high):
+def quick_sort(arr, low, high):
     if low < high:
  
         # pi is partitioning index, arr[p] is now
         # at right place
-        pi = partition(arr,low,high)
+        pi = partition(arr, low, high)
  
         # Separately sort elements before
         # partition and after partition
-        quick_sort(arr, low, pi-1)
-        quick_sort(arr, pi+1, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
         
 
 # Python program for implementation of heap Sort
 
 # To heapify subtree rooted at index i.
 # n is size of heap
+"""
 def heapify(arr, n, i):
     largest = i  # Initialize largest as root
     l = 2 * i + 1     # left = 2*i + 1
@@ -70,12 +71,12 @@ def heapify(arr, n, i):
 
     # See if left child of root exists and is
     # greater than root
-    if l < n and arr[i] < arr[l]:
+    if l < n and arr[i][2] < arr[l][2]:
         largest = l
 
     # See if right child of root exists and is
     # greater than root
-    if r < n and arr[largest] < arr[r]:
+    if r < n and arr[largest][2] < arr[r][2]:
         largest = r
 
     # Change root, if needed
@@ -99,6 +100,8 @@ def heap_sort(arr):
         arr[i], arr[0] = arr[0], arr[i]   # swap
         heapify(arr, i, 0)
 
+"""
+
 
 # Python program for implementation of MergeSort
 
@@ -107,7 +110,7 @@ def heap_sort(arr):
 # Second subarray is arr[m+1..r]
 def merge(arr, l, m, r):
     n1 = m - l + 1
-    n2 = r- m
+    n2 = r - m
 
     # create temp arrays
     L = [0] * (n1)
@@ -126,7 +129,7 @@ def merge(arr, l, m, r):
     k = l     # Initial index of merged subarray
 
     while i < n1 and j < n2:
-        if L[i] <= R[j]:
+        if L[i][2] <= R[j][2]:
             arr[k] = L[i]
             i += 1
         else:
@@ -168,6 +171,7 @@ def merge_sort(arr, l, r):
 
 # A function to do counting sort of arr[] according to
 # the digit represented by exp.
+"""
 def counting_sort(arr, exp1):
 
     n = len(arr)
@@ -254,6 +258,20 @@ def count_sort(arr):
     for i in range(len(arr)):
         ans[i] = output[i]
     return ans 
-    
-    
+"""
 
+
+def bubble_sort(arr):
+    n = len(arr)
+
+    # Traverse through all array elements
+    for i in range(n):
+
+        # Last i elements are already in place
+        for j in range(0, n - i - 1):
+
+            # traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            if arr[j][2] > arr[j + 1][2]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]

@@ -74,7 +74,19 @@ while True:
             edges = [[0 for i in range(3)] for i in range(len(lineList))]
             for i in range(len(lineList)):
                 edges[i][0], edges[i][1] = lineList[i][0], lineList[i][1]
-            lineList.clear()
+
+            k = []
+            degree = 0
+            start = 1
+            for i in range(0, len(edges)):
+                if edges[i][0] is start:
+                    degree += 1
+                else:
+                    start = edges[i][0]
+                    print(degree)
+                    k.append(degree)
+                    degree = 1
+            k.append(degree)
 
             print("Data set!", '\n', "Graph created!")
         elif _input[1] == 'LinkedList' and data is not None:
@@ -91,6 +103,7 @@ while True:
                 child.clear()
                 i -= 1
             i = None
+
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO2")
             elif _input[2] in 'Insertion' and len(_input) == 3:
@@ -112,17 +125,6 @@ while True:
             for i in range(len(lineList)):
                 matrix[i][0], matrix[i][1] = lineList[i][0], lineList[i][1]
             lineList.clear()
-            k = []
-            degree = 0
-            start = 1
-            for i in range(0, len(matrix)):
-                if matrix[i][0] is start:
-                    degree += 1
-                else:
-                    start = matrix[i][0]
-                    k.append(degree)
-                    degree = 1
-            k.append(degree)
 
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO22")
