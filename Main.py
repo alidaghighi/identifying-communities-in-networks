@@ -110,16 +110,6 @@ while True:
                     degree = 1
             k.append(degree)
 
-            for member in range(len(edges)):
-                Cij = 0
-                Zij = cycle(member)
-                try:
-                    Cij = Zij / (min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1))
-                except:
-                    if k[edges[member][0] - 1] - 1 == 0:
-                        Cij = 10 ** 7
-                edges[member][2] = Cij
-
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO22")
             elif _input[2] in 'Insertion' and len(_input) == 3:
