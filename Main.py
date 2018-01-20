@@ -1,6 +1,7 @@
 """
 Main files
 """
+from DS import LinkedList
 
 print(30 * ' ' + 20 * '*')
 print('Type "exit" when you wanted to quit.')
@@ -77,6 +78,19 @@ while True:
 
             print("Data set!", '\n', "Graph created!")
         elif _input[1] == 'LinkedList' and data is not None:
+            graph_linkedList = LinkedList()
+            i = len(graph) - 1
+            while i is not -1:
+                child = LinkedList()
+                graph_linkedList.__add__(graph[i])
+                graph_linkedList.add__child(child)
+                j = len(graph[i][1]) - 1
+                while j is not -1:
+                    child.__add__(graph[i][1][j])
+                    j -= 1
+                child.clear()
+                i -= 1
+            i = None
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO2")
             elif _input[2] in 'Insertion' and len(_input) == 3:

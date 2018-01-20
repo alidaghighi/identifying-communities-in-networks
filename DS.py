@@ -11,6 +11,7 @@ class Node:
         self.next = None
         self.data = data
         self.prev = None
+        self.child = None
 
 
 """
@@ -26,7 +27,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def add(self, data):
+    def __add__(self, data):
         node = Node(data)
         if self.head is None:
             self.head = node
@@ -34,6 +35,11 @@ class LinkedList:
             node.next = self.head
             node.next.prev = node
             self.head = node
+
+    def add__child(self, child):
+        p = self.head
+        if p is not None:
+            p.child = child
 
     def search(self, k):
         p = self.head
@@ -46,7 +52,24 @@ class LinkedList:
                 return p
         return None
 
-    def remove(self, p):
+    def pop(self):
+        p = self.head
         tmp = p.prev
-        p.prev.next = p.next
-        p.prev = tmp
+        self.head = tmp
+
+    def clear(self):
+        p = self.head
+        p.next = None
+        p.data = None
+        p.prev = None
+        p.child = None
+
+    def __str__(self):
+        s = ""
+        p = self.head
+        if p is not None:
+            while p.next is not None:
+                s += str(p.data) + '\t'
+                p = p.next
+            s += str(p.data)
+        return s
