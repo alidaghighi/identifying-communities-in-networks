@@ -40,26 +40,10 @@ while True:
             data = open(_input[1], 'r')
             lineList = data.readlines()
             for i in range(len(lineList)):
-                lineList[i] = lineList[i].split('\t')
+                lineList[i] = lineList[i].split(',')
             for i in range(len(lineList)):
-                last = lineList[i]
-                s = ''
-                s1 = last[1]
-                for j in range(0, len(last[1]) - 1):
-                    s += s1[j]
-                last[1] = s
-                lineList[i] = last
-            s = []
-            for i in range(0, int(lineList[-1][0])):
-                if lineList[i + 1][0] == lineList[i][0]:
-                    for j in [1]:
-                        if lineList[i][j] not in s:
-                            s.append(lineList[i][j])
-                if lineList[i + 1][0] != lineList[i][0]:
-                    if lineList[i][j] not in s:
-                        s.append(lineList[i][j])
-                    graph[lineList[i][0]] = s
-                    s = []
+                for j in range(2):
+                    lineList[i][j] = int(lineList[i][j])
 
             print("Data set!", '\n', "Graph created!")
         elif _input[1] == 'LinkedList':
@@ -80,7 +64,21 @@ while True:
                     print('Wrong!\ncheck "help" for more information!')
 
         elif _input[1] == 'Matrix':
-            matrix = [[0 for i in range(int(lineList[-1][0]))] for i in range(int(lineList[-1][0]))]
+            matrix = [[0 for i in range(3)] for i in range(len(lineList))]
+            for i in range(len(lineList)):
+                matrix[i][0], matrix[i][1] = lineList[i][0], lineList[i][1]
+            lineList.clear()
+            k = []
+            degree = 0
+            start = 1
+            for i in range(0, len(matrix)):
+                if matrix[i][0] is start:
+                    degree += 1
+                else:
+                    start = matrix[i][0]
+                    k.append(degree)
+                    degree = 1
+            k.append(degree)
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO22")
             elif _input[2] in 'Insertion' and len(_input) == 3:
