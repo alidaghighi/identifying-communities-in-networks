@@ -10,6 +10,15 @@ print(30 * ' ' + 20 * '*')
 
 data = []
 
+
+def cycle(row):
+    z = 0
+    for v in graph[edges[row][0] - 1][1]:
+        if v in graph[edges[row][1] - 1][1]:
+            z += 1
+    return z
+
+
 while True:
     _input = input('Enter a command: ').split()
     try:
@@ -61,6 +70,10 @@ while True:
                     s.append(lineList[i][1])
             graph[-1][0] = lineList[-1][0]
             graph[-1][1] = s
+            edges = [[0 for i in range(3)] for i in range(len(lineList))]
+            for i in range(len(lineList)):
+                edges[i][0], edges[i][1] = lineList[i][0], lineList[i][1]
+            lineList.clear()
 
             print("Data set!", '\n', "Graph created!")
         elif _input[1] == 'LinkedList' and data is not None:
@@ -96,6 +109,17 @@ while True:
                     k.append(degree)
                     degree = 1
             k.append(degree)
+
+            for member in range(len(edges)):
+                Cij = 0
+                Zij = cycle(member)
+                try:
+                    Cij = Zij / (min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1))
+                except:
+                    if k[edges[member][0] - 1] - 1 == 0:
+                        Cij = 10 ** 7
+                edges[member][2] = Cij
+
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO22")
             elif _input[2] in 'Insertion' and len(_input) == 3:
