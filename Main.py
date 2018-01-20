@@ -8,7 +8,7 @@ print(30 * ' ' + 20 * '*')
 print('Type "help" for allowed commands.')
 print(30 * ' ' + 20 * '*')
 
-graph = {}
+data = []
 
 while True:
     _input = input('Enter a command: ').split()
@@ -18,6 +18,8 @@ while True:
         elif 'exit' in _input[0]:
             break
         elif 'help' in _input[0]:
+            print(30 * ' ' + 40 * '*')
+            print('At first you have to set data!')
             print(30 * ' ' + 40 * '*')
             print('run commands:')
             print('    >>> run LinkedList Quick ')
@@ -44,9 +46,24 @@ while True:
             for i in range(len(lineList)):
                 for j in range(2):
                     lineList[i][j] = int(lineList[i][j])
+            graph = [[0 for i in range(2)] for i in range(int(lineList[-1][0]))]
+
+            s = []
+            start = 1
+            for i in range(0, len(lineList)):
+                if lineList[i][0] is start:
+                    s.append(lineList[i][1])
+                else:
+                    start = lineList[i][0]
+                    graph[lineList[i - 1][0] - 1][0] = lineList[i - 1][0]
+                    graph[lineList[i - 1][0] - 1][1] = s
+                    s = []
+                    s.append(lineList[i][1])
+            graph[-1][0] = lineList[-1][0]
+            graph[-1][1] = s
 
             print("Data set!", '\n', "Graph created!")
-        elif _input[1] == 'LinkedList':
+        elif _input[1] == 'LinkedList' and data is not None:
             if _input[2] in 'Quick' and len(_input) == 3:
                 print("DO2")
             elif _input[2] in 'Insertion' and len(_input) == 3:
@@ -63,7 +80,7 @@ while True:
                 else:
                     print('Wrong!\ncheck "help" for more information!')
 
-        elif _input[1] == 'Matrix':
+        elif _input[1] == 'Matrix' and data is not None:
             matrix = [[0 for i in range(3)] for i in range(len(lineList))]
             for i in range(len(lineList)):
                 matrix[i][0], matrix[i][1] = lineList[i][0], lineList[i][1]
