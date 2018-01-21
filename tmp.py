@@ -1,4 +1,4 @@
-fileHandle = open('test0.txt', "r")
+fileHandle = open('t2.txt', "r")
 lineList = fileHandle.readlines()
 fileHandle.close()
 for i in range(len(lineList)):

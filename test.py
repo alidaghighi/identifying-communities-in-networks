@@ -5,12 +5,13 @@ import sort_methods
 # read a text file as a list of lines
 # find the last line, change to a file you have
 A = time.time()
-fileHandle = open('test4.txt', "r")
+fileHandle = open('t2.txt', "r")
 lineList = fileHandle.readlines()
 fileHandle.close()
+tmp = [[0 for i in range(2)] for i in range(len(lineList))]
 for i in range(len(lineList)):
-    lineList[i] = lineList[i].split('\t')
-
+    if lineList[i] is not '\n':
+        lineList[i] = lineList[i].split(',')
 
 for i in range(len(lineList)):
     for j in range(2):
@@ -32,7 +33,7 @@ for i in range(0, len(lineList)):
 graph[-1][0] = lineList[-1][0]
 graph[-1][1] = s
 
-
+print(graph)
 edges = [[0 for i in range(3)] for i in range(len(lineList))]
 for i in range(len(lineList)):
     edges[i][0], edges[i][1] = lineList[i][0], lineList[i][1]
@@ -194,7 +195,7 @@ if True: #_input[2] in 'Quick' and len(_input) == 3:
             else:
                 Cij = 10 ** 7
             edges[member][2] = Cij
-        sort_methods.bubble_sort(edges)
+        sort_methods.quick_sort(edges, 0, len(edges) - 1)
         tmp1 = edges.pop(0)
         tmp2 = edges.pop(0)
         tmp1[2] = int(tmp1[2])
@@ -209,7 +210,18 @@ if True: #_input[2] in 'Quick' and len(_input) == 3:
         graph[tmp1[1] - 1][1].remove(tmp1[0])
         visited = dfs(graph, 1)
     end_time = time.time()
-    print(graph[0:10])
+    result1 = []
+    for i in visited:
+        result1.append(i)
+    print("A:")
+    print(result1)
+    result2 = []
+    for i in range(len(result1)):
+        for j in range(len(graph)):
+            if (graph[j][0] not in result1) and (graph[j][0] not in result2):
+                result2.append(graph[j][0])
+    print("B:")
+    print(result2)
     print("Done!")
     print(end_time - start_time)
 """
