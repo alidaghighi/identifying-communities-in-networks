@@ -141,20 +141,27 @@ def dfs(graph,start):
 
 
 def dfs(Graph, Start):
-    Visited = []
-    stack = [Start]
-    Visited.append(stack[-1])
+    Visited = [Start]
+    stack = []
+    for i in range(0,len(graph[Start-1][1])):
+        stack.append(graph[Start - 1][1][i])
     while stack != []:
-        for w in Graph[stack[-1] - 1][1]:
+        """
+        for w in Graph[stack.pop() - 1][1]:
             if w not in Visited:
-                stack.append(w)
                 Visited.append(w)
+                stack.pop()
+                for i in graph[w - 1]:
+                    stack.append(i)
             else:
-                for w in Graph[stack[-1] - 1][1]:
-                    if w not in Visited:
-                        stack.append(w)
-                        Visited.append(w)
-        stack.pop()
+                stack.pop()
+        """
+        tmp = stack.pop()
+        if tmp not in Visited:
+            Visited.append(tmp)
+            for i in range(0, len(graph[tmp - 1][1])):
+                stack.append(graph[tmp - 1][1][i])
+
     return Visited
 
 
@@ -176,7 +183,7 @@ def insertionsort(A):
 start_time = time.time()
 
 
-if True:#_input[2] in 'Quick' and len(_input) == 3:
+if True: #_input[2] in 'Quick' and len(_input) == 3:
     visited = dfs(graph, 1)
     while len(visited) == len(graph):
         for member in range(len(edges)):
@@ -201,9 +208,9 @@ if True:#_input[2] in 'Quick' and len(_input) == 3:
         graph[tmp1[0] - 1][1].remove(tmp1[1])
         graph[tmp1[1] - 1][1].remove(tmp1[0])
         visited = dfs(graph, 1)
-    print(edges)
     end_time = time.time()
-    print(graph)
+    print(graph[0:10])
+    print("Done!")
     print(end_time - start_time)
 """
 visited = dfs(graph, 1)

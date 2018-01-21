@@ -23,22 +23,18 @@ def cycle_matrix(row):
 
 
 def dfs(Graph, Start):
-    Visited = []
-    stack = [Start]
-    Visited.append(stack[-1])
+    Visited = [Start]
+    stack = []
+    for i in range(0,len(Graph[Start-1][1])):
+        stack.append(Graph[Start - 1][1][i])
     while stack != []:
-        for w in Graph[stack[-1] - 1][1]:
-            if w not in Visited:
-                stack.append(w)
-                Visited.append(w)
-            else:
-                for w in Graph[stack[-1] - 1][1]:
-                    if w not in Visited:
-                        stack.append(w)
-                        Visited.append(w)
-        stack.pop()
-    return Visited
+        tmp = stack.pop()
+        if tmp not in Visited:
+            Visited.append(tmp)
+            for i in range(0, len(Graph[tmp - 1][1])):
+                stack.append(Graph[tmp - 1][1][i])
 
+    return Visited
 
 while True:
     _input = input('Enter a command: ').split()
@@ -148,50 +144,121 @@ while True:
             lineList.clear()
             if _input[2] in 'Quick' and len(_input) == 3:
                 visited = dfs(graph, 1)
-                while len(visited) != len(graph):
+                while len(visited) == len(graph):
                     for member in range(len(edges)):
                         Cij = 0
                         Zij = cycle_matrix(member)
-                        try:
+                        if min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1) != 0:
                             Cij = Zij / (min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1))
-                        except:
-                            if k[edges[member][0] - 1] - 1 == 0:
-                                Cij = 10 ** 7
+                        else:
+                            Cij = 10 ** 7
                         edges[member][2] = Cij
-                        sort_methods.quick_sort(edges, 0, len(edges))
-                        tmp1 = edges.pop()
-                        tmp = []
-                        tmp.append(tmp1[0])
-                        tmp.append(tmp1[1])
-                        matrix.remove(tmp)
-                        k[tmp1[0] - 1] -= 1
-                        k[tmp1[1] - 1] -= 1
-                        graph[tmp[0] - 1][1].remove(tmp1[1])
-                        graph[tmp[1] - 1][1].remove(tmp1[0])
+                    sort_methods.quick_sort(edges, 0, len(edges) - 1)
+                    tmp1 = edges.pop(0)
+                    tmp2 = edges.pop(0)
+                    tmp1[2] = int(tmp1[2])
+                    tmp2[2] = int(tmp2[2])
+                    print(tmp1)
+                    print(matrix[7])
+                    matrix.remove(tmp1)
+                    matrix.remove(tmp2)
+                    k[tmp1[0] - 1] -= 1
+                    k[tmp1[1] - 1] -= 1
+                    graph[tmp1[0] - 1][1].remove(tmp1[1])
+                    graph[tmp1[1] - 1][1].remove(tmp1[0])
                     visited = dfs(graph, 1)
-                # print(graph)
                 end_time = time.time()
+                print(graph[0:10])
+                print("Done!")
                 print(end_time - start_time)
 
             elif _input[2] in 'Insertion' and len(_input) == 3:
+                    visited = dfs(graph, 1)
+                    while len(visited) == len(graph):
+                        for member in range(len(edges)):
+                            Cij = 0
+                            Zij = cycle_matrix(member)
+                            if min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1) != 0:
+                                Cij = Zij / (min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1))
+                            else:
+                                Cij = 10 ** 7
+                            edges[member][2] = Cij
+                        sort_methods.insertion_sort(edges)
+                        tmp1 = edges.pop(0)
+                        tmp2 = edges.pop(0)
+                        tmp1[2] = int(tmp1[2])
+                        tmp2[2] = int(tmp2[2])
+                        print(tmp1)
+                        print(matrix[7])
+                        matrix.remove(tmp1)
+                        matrix.remove(tmp2)
+                        k[tmp1[0] - 1] -= 1
+                        k[tmp1[1] - 1] -= 1
+                        graph[tmp1[0] - 1][1].remove(tmp1[1])
+                        graph[tmp1[1] - 1][1].remove(tmp1[0])
+                        visited = dfs(graph, 1)
+                    end_time = time.time()
+                    print(graph[0:10])
+                    print("Done!")
+                    print(end_time - start_time)
+            elif _input[2] in 'Merge' and len(_input) == 3:
                 visited = dfs(graph, 1)
-                while len(visited) != len(graph):
+                while len(visited) == len(graph):
                     for member in range(len(edges)):
                         Cij = 0
                         Zij = cycle_matrix(member)
-                        try:
+                        if min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1) != 0:
                             Cij = Zij / (min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1))
-                        except:
-                            if k[edges[member][0] - 1] - 1 == 0:
-                                Cij = 10 ** 7
+                        else:
+                            Cij = 10 ** 7
                         edges[member][2] = Cij
-                        sort_methods.insertion_sort(edges)
-                        edges.pop()
+                    sort_methods.merge_sort(edges, 0, 1)
+                    tmp1 = edges.pop(0)
+                    tmp2 = edges.pop(0)
+                    tmp1[2] = int(tmp1[2])
+                    tmp2[2] = int(tmp2[2])
+                    print(tmp1)
+                    print(matrix[7])
+                    matrix.remove(tmp1)
+                    matrix.remove(tmp2)
+                    k[tmp1[0] - 1] -= 1
+                    k[tmp1[1] - 1] -= 1
+                    graph[tmp1[0] - 1][1].remove(tmp1[1])
+                    graph[tmp1[1] - 1][1].remove(tmp1[0])
                     visited = dfs(graph, 1)
-            elif _input[2] in 'Merge' and len(_input) == 3:
-                print("DO42")
+                end_time = time.time()
+                print(graph[0:10])
+                print("Done!")
+                print(end_time - start_time)
             elif _input[2] in 'Bubble' and len(_input) == 3:
-                print("DO52")
+                visited = dfs(graph, 1)
+                while len(visited) == len(graph):
+                    for member in range(len(edges)):
+                        Cij = 0
+                        Zij = cycle_matrix(member)
+                        if min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1) != 0:
+                            Cij = Zij / (min(k[edges[member][0] - 1] - 1, k[edges[member][1] - 1] - 1))
+                        else:
+                            Cij = 10 ** 7
+                        edges[member][2] = Cij
+                    sort_methods.bubble_sort(edges)
+                    tmp1 = edges.pop(0)
+                    tmp2 = edges.pop(0)
+                    tmp1[2] = int(tmp1[2])
+                    tmp2[2] = int(tmp2[2])
+                    print(tmp1)
+                    print(matrix[7])
+                    matrix.remove(tmp1)
+                    matrix.remove(tmp2)
+                    k[tmp1[0] - 1] -= 1
+                    k[tmp1[1] - 1] -= 1
+                    graph[tmp1[0] - 1][1].remove(tmp1[1])
+                    graph[tmp1[1] - 1][1].remove(tmp1[0])
+                    visited = dfs(graph, 1)
+                end_time = time.time()
+                print(graph[0:10])
+                print("Done!")
+                print(end_time - start_time)
             # elif _input[2] in 'Optimum':
             #     if _input[3] in 'Insertion' and len(_input) == 4:
             #         print("DO62")
