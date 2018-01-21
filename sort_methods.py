@@ -1,27 +1,15 @@
-def insertion_sort(edges):
- 
-    # Traverse through 1 to len(arr)
-    for i in range(1, len(edges)):
- 
-        key = edges[i][2]
- 
-        # Move elements of arr[0..i-1], that are
-        # greater than key, to one position ahead
-        # of their current position
-        j = i-1
-        while j >= 0 and key < edges[j][2]:
-            edges[j + 1] = edges[j]
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+
+        key = arr[i]
+
+        j = i - 1
+        while j >= 0 and key[2] < arr[j][2]:
+            arr[j + 1] = arr[j]
             j -= 1
-        edges[j + 1][2] = key
+        arr[j + 1] = key
 
 
-# Python program for implementation of Quicksort Sort
-
-# This function takes last element as pivot, places
-# the pivot element at its correct position in sorted
-# array, and places all smaller (smaller than pivot)
-# to left of pivot and all greater elements to right
-# of pivot
 def partition(arr, low, high):
     i = (low - 1)         # index of smaller element
     pivot = arr[high][2]     # pivot
@@ -57,12 +45,6 @@ def quick_sort(arr, low, high):
         # partition and after partition
         quick_sort(arr, low, pi - 1)
         quick_sort(arr, pi + 1, high)
-        
-
-# Python program for implementation of heap Sort
-
-# To heapify subtree rooted at index i.
-# n is size of heap
 
 
 # Python program for implementation of MergeSort
@@ -127,12 +109,6 @@ def merge_sort(arr, l, r):
         merge_sort(arr, l, m)
         merge_sort(arr, m + 1, r)
         merge(arr, l, m, r)
-
-
-# Python program for implementation of Radix Sort
-
-# A function to do counting sort of arr[] according to
-# the digit represented by exp.
 
 
 def bubble_sort(arr):
